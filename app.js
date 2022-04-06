@@ -1,19 +1,21 @@
 // app.js
+import request from './service/network.js'
 App({
+  globalData: {
+    home_list: [],
+    checkLogin: false
+  },
   onLaunch() {
-    // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
+    let that = this;
+    request({
+      url: 'https://api.jisuapi.com/news/get?channel=头条&start=0&num=10&appkey=0a5c7b435f098f99',
+    }).then(res => {
+      // console.log(res);
+      that.globalData.home_list = res.data.result.list;
+      // console.log(that.globalData.home_list);
+    }).catch(err => {
+      console.log(err);
     })
   },
-  globalData: {
-    userInfo: null
-  }
+ 
 })

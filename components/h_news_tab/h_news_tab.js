@@ -4,6 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    index: {
+      type: Number,
+      value: 0,
+    }
   },
 
   /**
@@ -18,8 +22,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    handleText(e){
+    // 传递方法和数据到news页面
+    textControl(e){
       const index = e.currentTarget.dataset.index;
+      this.triggerEvent('textControl',{index},{}),
       this.setData({
         indexChecked: index
       })
