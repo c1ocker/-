@@ -1,0 +1,6 @@
+<!--pages/news/news.wxml-->
+<!-- tab 导航栏 -->
+<news_tab></news_tab>
+
+<news_content></news_content>
+
